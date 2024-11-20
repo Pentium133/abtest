@@ -1,0 +1,21 @@
+# == Schema Information
+#
+# Table name: experement_options
+#
+#  id            :integer          not null, primary key
+#  experement_id :integer
+#  option        :string
+#  value         :string
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
+one:
+  experement_id: 1
+  option: MyString
+  value: MyString
+
+two:
+  experement_id: 1
+  option: MyString
+  value: MyString
