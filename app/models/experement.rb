@@ -11,7 +11,8 @@ class Experement < ApplicationRecord
   has_many :experement_options
 
   def random_option
-    random = rand(1..100)
+    range =  experement_options.sum(:value)
+    random = rand(1..range)
 
     sum = 0
     experement_options.each do |option|
