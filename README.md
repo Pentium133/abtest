@@ -1,24 +1,29 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### GET /experements
 
-Things you may want to cover:
+Запрос доступных эксперементов, в заголовке необходимо передавать идентификатор устройства 'Device-Token' => '....'
 
-* Ruby version
+#### RESPONSE
 
-* System dependencies
+Массив доступных эксперементов для указанного Device-Token,
+experiment_id - id эксперемента,
+experiment_name - идентификатор эксперемента,
+assigned_option - значение используемое в эксперементе
+assigned_value - вес значения
 
-* Configuration
+```
+[
+  {
+    "experiment_id": 1,
+    "experiment_name": "button_color",
+    "assigned_option": "#FF0000",
+    "assigned_value": "33"
+  },
+  {...}
+]
+```
 
-* Database creation
+### GET /experements/stat
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Статистика эксперементов
