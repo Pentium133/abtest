@@ -11,4 +11,5 @@
 #
 class ExperementOption < ApplicationRecord
   belongs_to :experement
+  has_many :device_experiment_options
 end
