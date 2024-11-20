@@ -8,7 +8,7 @@ class ExperementsController < ApplicationController
       device_option = DeviceExperimentOption.find_or_initialize_by(device_id: device, experement_id: experement.id)
 
       if device_option.new_record?
-        device_option.experement_option = experement.experement_options.sample
+        device_option.experement_option = experement.random_option
         device_option.save!
       end
 
