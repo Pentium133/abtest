@@ -18,5 +18,6 @@ class Experement < ApplicationRecord
       sum += option.value.to_i
       return option if random < sum
     end
+    nil
   end
 end

@@ -2,7 +2,10 @@ class ExperementsController < ApplicationController
   # GET /experements
   def index
     device = request.headers["Device-Token"]
-    experements = Experement.includes(:experement_options)
+
+    user_device = UserDevice.find_or_create_by(device_id: device)
+
+    experements = Experement.includes(:experement_options).where('created_at <= ?', user_device.first_request_at)
 
     options_for_device = experements.map do |experement|
       device_option = DeviceExperimentOption.find_or_initialize_by(device_id: device, experement_id: experement.id)
