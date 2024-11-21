@@ -1,0 +1,16 @@
+# Exported from Render on 2024-11-21T09:56:08Z
+services:
+  - type: web
+    name: abtest
+    runtime: ruby
+    repo: https://github.com/Pentium133/abtest
+    plan: free
+    envVars:
+      - key: RAILS_MASTER_KEY
+        sync: false
+      - key: WEB_CONCURRENCY
+        sync: false
+    region: frankfurt
+    buildCommand: bundle install;
+    startCommand: bundle exec rails s -p ${PORT:-3000} -e ${RACK_ENV:-development}
+version: "1"
