@@ -3,7 +3,7 @@ class CreateExperementOptions < ActiveRecord::Migration[7.2]
     create_table :experement_options do |t|
       t.integer :experement_id
       t.string :option
-      t.string :value
+      t.integer :value
 
       t.timestamps
     end

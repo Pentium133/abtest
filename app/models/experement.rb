@@ -17,7 +17,7 @@ class Experement < ApplicationRecord
     sum = 0
     experement_options.each do |option|
       sum += option.value.to_i
-      return option if random < sum
+      return option if random <= sum
     end
     nil
   end

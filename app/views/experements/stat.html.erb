@@ -1,0 +1,38 @@
+<style>
+.table-bordered {
+  border-collapse: collapse;
+}
+
+.table-bordered td,
+.table-bordered th {
+  border: 1px solid black;
+}
+</style>
+
+<h1>Статистика экспериментов</h1>
+
+<table class="table-bordered">
+  <thead>
+    <tr>
+      <th>Эксперимент</th>
+      <th>Общее количество устройств</th>
+      <th>Распределение по опциям</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @experements.each do |experements| %>
+      <tr>
+        <td><%= experements.name %></td>
+        <td><%= device_count = experements.experement_options.joins(:device_experiment_options).count %></td>
+        <td>
+          <% experements.experement_options.each do |option| %>
+            <p>
+              <strong><%= option.option %> (вес: <%= option.value %>):</strong>
+              <%= option.devices.count %> устройств ( реальный <%= (option.devices.count * 100.0 / device_count).round(2) %> %)
+            </p>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -13,7 +13,7 @@
 ActiveRecord::Schema[7.2].define(version: 2024_11_20_102020) do
   create_table "device_experiment_options", force: :cascade do |t|
     t.integer "experement_option_id"
-    t.string "device_id"
+    t.integer "device_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "experement_id", null: false
@@ -22,7 +22,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_20_102020) do
   create_table "experement_options", force: :cascade do |t|
     t.integer "experement_id"
     t.string "option"
-    t.string "value"
+    t.integer "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

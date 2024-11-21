@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :experements, only: :index
+  resources :experements, only: :index do
+    collection do
+      get :stat
+    end
+  end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

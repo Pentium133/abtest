@@ -8,7 +8,7 @@ class ExperementsController < ApplicationController
     experements = Experement.includes(:experement_options).where('created_at <= ?', user_device.first_request_at)
 
     options_for_device = experements.map do |experement|
-      device_option = DeviceExperimentOption.find_or_initialize_by(device_id: device, experement_id: experement.id)
+      device_option = DeviceExperimentOption.find_or_initialize_by(device_id: user_device.id, experement_id: experement.id)
 
       if device_option.new_record?
         device_option.experement_option = experement.random_option
@@ -24,5 +24,10 @@ class ExperementsController < ApplicationController
     end
 
     render json: options_for_device
+  end
+
+  # GET /stat
+  def stat
+    @experements = Experement.includes(:experement_options)
   end
 end

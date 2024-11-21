@@ -8,9 +8,9 @@ RSpec.describe 'AB test API', type: :request do
   let!(:experement) { create(:experement) }
 
   it 'returns a list of AB test' do
-    create(:experement_option, experement: experement, option: '#FF0000', value: '33')
-    create(:experement_option, experement: experement, option: '#00FF00', value: '33')
-    create(:experement_option, experement: experement, option: '#0000FF', value: '33')
+    create(:experement_option, experement: experement, option: '#FF0000', value: 1)
+    create(:experement_option, experement: experement, option: '#00FF00', value: 1)
+    create(:experement_option, experement: experement, option: '#0000FF', value: 1)
 
     get '/experements', headers: @headers
 
@@ -18,9 +18,9 @@ RSpec.describe 'AB test API', type: :request do
   end
 
   it 'returns the same experiment option for the same device' do
-    create(:experement_option, experement: experement, option: '#FF0000', value: '33')
-    create(:experement_option, experement: experement, option: '#00FF00', value: '33')
-    create(:experement_option, experement: experement, option: '#0000FF', value: '33')
+    create(:experement_option, experement: experement, option: '#FF0000', value: 33)
+    create(:experement_option, experement: experement, option: '#00FF00', value: 33)
+    create(:experement_option, experement: experement, option: '#0000FF', value: 33)
 
     get '/experements', headers: @headers
     expect(response).to have_http_status(:ok)
@@ -37,10 +37,10 @@ RSpec.describe 'AB test API', type: :request do
     UserDevice.create!(device_id: @headers["Device-Token"], first_request_at: 1.hour.ago)
 
     old_experement = create(:experement, created_at: 1.day.ago)
-    create(:experement_option, experement: old_experement, option: '#FF0000', value: '100')
+    create(:experement_option, experement: old_experement, option: '#FF0000', value: 100)
 
     new_experement =  create(:experement, created_at: Time.current)
-    create(:experement_option, experement: new_experement, option: '#0000FF', value: '100')
+    create(:experement_option, experement: new_experement, option: '#0000FF', value: 100)
 
     get '/experements', headers: @headers
     expect(response).to have_http_status(:ok)
