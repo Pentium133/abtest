@@ -23,13 +23,10 @@
     <% @experements.each do |experements| %>
       <tr>
         <td><%= experements.name %></td>
-        <td><%= device_count = experements.experement_options.joins(:device_experiment_options).count %></td>
+        <td><%= device_count = experements.experement_options.joins(:device_experiment_options).count  %></td>
         <td>
           <% experements.experement_options.each do |option| %>
-            <p>
-              <strong><%= option.option %> (вес: <%= option.value %>):</strong>
-              <%= option.devices.count %> устройств ( реальный <%= (option.devices.count * 100.0 / device_count).round(2) %> %)
-            </p>
+            <p><%= option_information(option, device_count) %></p>
           <% end %>
         </td>
       </tr>
